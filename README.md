@@ -2,7 +2,8 @@
 
 This plugin provides for server side execution of [Handlebars.js](http://handlebarsjs.com/) templates. It is
 intended to compliment the [handlebars-resources](https://github.com/sheehan/grails-handlebars-resources) plugin
-which compiles Handlebars templates into Javascript for client side usage.
+which compiles Handlebars templates into Javascript for client side usage. The templates are compiled into Java
+code using [handlebars-java](https://github.com/jknack/handlebars.java).
 
 ## Installation
 
