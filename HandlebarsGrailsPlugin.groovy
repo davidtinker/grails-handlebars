@@ -1,7 +1,6 @@
 class HandlebarsGrailsPlugin {
     def version = "1.0.0"
     def grailsVersion = "2.0 > *"
-    def dependsOn = ['handlebars-resources': '0.3 > *']
     def loadAfter = ['handlebars-resources']
 
     // resources that are excluded from plugin packaging

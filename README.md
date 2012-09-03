@@ -8,6 +8,11 @@ which compiles Handlebars templates into Javascript for client side usage.
 
     grails install-plugin handlebars
 
+Note that you need to install the handlebars-resources plugin separately if you also want to use handlebars.js on
+the client:
+
+    grails install-plugin handlebars-resources
+
 ## Usage
 
 A handlebars:render tag is provided to render handlebars templates server side in views and from controllers. The
