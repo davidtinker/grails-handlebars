@@ -2,4 +2,6 @@
 .idea
 grails
 target
+*.zip
+plugin.xml
 
