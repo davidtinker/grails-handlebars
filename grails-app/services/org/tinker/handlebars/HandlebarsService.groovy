@@ -10,11 +10,14 @@ import com.github.jknack.handlebars.context.FieldValueResolver
 import org.codehaus.groovy.grails.web.context.ServletContextHolder
 import grails.util.GrailsUtil
 import java.util.concurrent.ConcurrentHashMap
+import com.github.jknack.handlebars.io.ServletContextTemplateLoader
+import org.springframework.web.context.ServletContextAware
+import javax.servlet.ServletContext
 
 /**
  * Compile Handlebars template resources located under web-app. Compiled templates are cached.
  */
-class HandlebarsService {
+class HandlebarsService implements ServletContextAware {
 
     def grailsApplication
 
@@ -24,6 +27,11 @@ class HandlebarsService {
     Handlebars handlebars
 
     private Map<String, Template> templateCache
+    private ServletContext servletContext
+
+    void setServletContext(ServletContext servletContext) {
+        this.servletContext = servletContext
+    }
 
     @PostConstruct
     private void init() {
@@ -35,7 +43,8 @@ class HandlebarsService {
         if (!(cacheTemplates instanceof Boolean)) cacheTemplates = !GrailsUtil.isDevelopmentEnv()
         if (cacheTemplates) templateCache = new ConcurrentHashMap<String, Template>()
 
-        handlebars = new Handlebars()
+        def templateLoader = new ServletContextTemplateLoader(servletContext, templatesRoot, '.handlebars')
+        handlebars = new Handlebars(templateLoader)
     }
 
     /**
