@@ -67,4 +67,5 @@ plugin
 ## Changelog
 
 1.1.0: 4th Dec 2012 - Added support for partials loaded from web-app (Issue 1)
+
 1.0.0: 3rd Sept 2012 - Initial release
