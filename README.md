@@ -62,6 +62,11 @@ The following configuration variables from handlebars-resources are also used by
 * **grails.resources.mappers.handlebars.templatesPathSeparator**: The delimiter to use for template names.
   Default is '/'.
 
+This one is only used by this plugin:
+
+* **grails.resources.mappers.handlebars.templateExtension**: The extension handlebars files are expected to have
+  (default is .handlebars)
+
 ## Thanks
 
 Thanks to Edgar Espina for creating the [handlebars-java](https://github.com/jknack/handlebars.java) library used
