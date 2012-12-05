@@ -23,6 +23,7 @@ class HandlebarsService implements ServletContextAware {
 
     String templatesPathSeparator
     String templatesRoot
+    String templateExtension
 
     Handlebars handlebars
 
@@ -38,12 +39,13 @@ class HandlebarsService implements ServletContextAware {
         def cfg = grailsApplication.config.grails.resources.mappers.handlebars
         templatesPathSeparator = cfg?.templatesPathSeparator ?: '/'
         templatesRoot = cfg?.templatesRoot ?: ''
+        templateExtension = cfg?.templateExtension ?: '.handlebars'
 
         def cacheTemplates = grailsApplication.config.handlebars.cache.templates
         if (!(cacheTemplates instanceof Boolean)) cacheTemplates = !GrailsUtil.isDevelopmentEnv()
         if (cacheTemplates) templateCache = new ConcurrentHashMap<String, Template>()
 
-        def templateLoader = new ServletContextTemplateLoader(servletContext, templatesRoot, '.handlebars')
+        def templateLoader = new ServletContextTemplateLoader(servletContext, templatesRoot, templateExtension)
         handlebars = new Handlebars(templateLoader)
     }
 
@@ -68,7 +70,7 @@ class HandlebarsService implements ServletContextAware {
     String toResourceName(String templateName) {
         if (templatesPathSeparator != '/') templateName = templateName.replaceAll(templatesPathSeparator, '/')
         if (templatesRoot) templateName = templatesRoot + "/" + templateName
-        return "/" + templateName + ".handlebars"
+        return "/" + templateName + templateExtension
     }
 
     /** Compile a template provided as a resource. */

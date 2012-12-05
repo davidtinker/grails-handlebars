@@ -31,11 +31,15 @@ Put the template code in ''web-app/templates/home/hello.handlebars''.
 
 You probably want to put the following in your Config.groovy:
 
-    grails.resources.mappers.handlebars.templatesRoot=templates
+    grails.resources.mappers.handlebars.templatesRoot = 'templates'
 
 Then you can reference template names without the templates prefix:
 
     <handlebars:render template="home/hello" model="[name: 'bob']"/>
+
+You can change the extension used for templates (default is .handlebars):
+
+    grails.resources.mappers.handlebars.templateExtension = '.hbs'
 
 If no model is supplied then the default page bindings are used:
 
@@ -66,6 +70,9 @@ plugin
 
 ## Changelog
 
-1.1.0: 4th Dec 2012 - Added support for partials loaded from web-app (Issue 1)
+1.1.0: 4th Dec 2012
+- Added support for partials loaded from web-app (Issue 1)
+- Default extension for handlebars resources can now be configured (grails.resources.mappers.handlebars.templateExtension)
 
-1.0.0: 3rd Sept 2012 - Initial release
+1.0.0: 3rd Sept 2012
+- Initial release
