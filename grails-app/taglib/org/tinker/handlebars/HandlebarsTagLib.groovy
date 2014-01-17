@@ -35,7 +35,7 @@ class HandlebarsTagLib {
     Closure render = { attrs, body ->
         def model = attrs.model ?: getPageScope().variables
         if (attrs.template) out << handlebarsService.apply(attrs.template, model)
-        else out << handlebarsService.applyInline(body(), model)
+        else out << handlebarsService.applyInline(String.valueOf(body()), model)
     }
 
 }
