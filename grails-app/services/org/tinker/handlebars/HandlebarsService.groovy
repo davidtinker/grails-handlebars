@@ -40,6 +40,10 @@ class HandlebarsService implements ServletContextAware {
         templatesPathSeparator = cfg?.templatesPathSeparator ?: '/'
         templatesRoot = cfg?.templatesRoot ?: ''
         templateExtension = cfg?.templateExtension ?: '.handlebars'
+        def classHelperSource = cfg?.classHelperSource
+        def uriHelperSource = cfg?.uriHelperSource
+        def fileHelperSource = cfg?.fileHelperSource
+
 
         def cacheTemplates = grailsApplication.config.handlebars.cache.templates
         if (!(cacheTemplates instanceof Boolean)) cacheTemplates = !GrailsUtil.isDevelopmentEnv()
@@ -47,6 +51,16 @@ class HandlebarsService implements ServletContextAware {
 
         def templateLoader = new ServletContextTemplateLoader(servletContext, templatesRoot, templateExtension)
         handlebars = new Handlebars(templateLoader)
+
+        if (classHelperSource) {
+            registerHelpers(Class.forName(classHelperSource))
+        }
+        if (uriHelperSource) {
+            registerHelpers(URI.create(uriHelperSource))
+        }
+        if (fileHelperSource) {
+            registerHelpers(new File(fileHelperSource))
+        }
     }
 
     /**
@@ -108,5 +122,35 @@ class HandlebarsService implements ServletContextAware {
         return Context.newBuilder(model)
                 .resolver(MapValueResolver.INSTANCE, JavaBeanValueResolver.INSTANCE, FieldValueResolver.INSTANCE)
                 .build()
+    }
+
+    void registerHelpers(final URI location) throws Exception {
+        handlebars.registerHelpers(location)
+    }
+
+    void registerHelpers(final Object helperSource) {
+        handlebars.registerHelper(helperSource)
+    }
+
+    void registerHelpers(final Class<?> helperSource) {
+        handlebars.registerHelper(helperSource)
+    }
+
+    void registerHelpers(final File input) throws Exception {
+        handlebars.registerHelpers(input)
+    }
+
+    void  registerHelpers(final String filename, final Reader source) throws Exception {
+        handlebars.registerHelpers(filename, source)
+    }
+
+    public void registerHelpers(final String filename, final InputStream source)
+            throws Exception {
+        handlebars.registerHelpers(filename, source)
+    }
+
+    public void registerHelpers(final String filename, final String source) throws Exception {
+        handlebars.registerHelpers(filename, source)
+
     }
 }

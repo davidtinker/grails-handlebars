@@ -37,7 +37,7 @@ grails.project.dependency.resolution = {
     dependencies {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes eg.
 
-        runtime 'com.github.jknack:handlebars:0.4.2'
+        runtime 'com.github.jknack:handlebars:2.2.2'
     }
 
     plugins {
