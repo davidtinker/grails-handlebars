@@ -75,6 +75,9 @@ plugin
 
 ## Changelog
 
+1.2.1: 22nd Sept 2015
+- Added support for helpers, upgrade handlerbars-java version (tx richardwooding)
+
 1.1.0: 4th Dec 2012
 - Added support for partials loaded from web-app (Issue 1)
 - Default extension for handlebars resources can now be configured (grails.resources.mappers.handlebars.templateExtension)
