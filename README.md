@@ -5,7 +5,7 @@ intended to compliment the [handlebars-resources](https://github.com/sheehan/gra
 which compiles Handlebars templates into Javascript for client side usage. The templates are compiled into Java
 code using [handlebars-java](https://github.com/jknack/handlebars.java).
 
-## This Plugin is for Grails 2.x and will not work with Grails 3
+### This Plugin is for Grails 2.x and will not work with Grails 3
 
 For Grails 3 its probably easiest to just copy the dependencies from grails-app/conf/BuildConfig.groovy into
 your build.gradle file and cut and past the service and taglib.
