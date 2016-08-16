@@ -112,7 +112,7 @@ class HandlebarsService implements ServletContextAware {
             text = t
         }
 
-        def template = handlebars.compile(text)
+        def template = handlebars.compileInline(text)
         if (templateCache != null) templateCache.put(t, template)
         return template
     }
